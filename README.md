@@ -1,6 +1,6 @@
 # Simple Node Website
 
-This repository contains the source code for a basic website that shows off [Express][Express], [Jade][Jade], [Mongoose][Mongoose] with a [MongoDB][MongoDB] backend on [MongoLab][MongoLab].  It also shows off [Bootstrap][Bootstrap], [jQuery][jQuery], and [Datatables][Datatables] as well. This is a work in process at the moment but it can provide a good basic start for someone just starting out.
+This repository contains the source code for a basic website that shows off [Express][Express], [Jade][Jade], [Mongoose][Mongoose] with a [MongoDB][MongoDB] backend on [MongoLab][MongoLab].  It also shows off [Bootstrap][Bootstrap], [jQuery][jQuery], and [Datatables][Datatables] as well. This is a work in process at the moment but it can provide a good basic start for someone just starting out.  Use 'Test' as the user and password.
 
 
 ## Tools that I used to develop this code
@@ -34,7 +34,7 @@ This repository contains the source code for a basic website that shows off [Exp
 
 [Nodejitsu][Nodejitsu] - This is a node cloud solution that provides the most simple way to deploy your node website.  Just install the npm module(npm -g install jitsu) and cd to your applications directory and type 'jitsu deploy'.
 
-[Azure][Azure] - Part of Microsoft's Azure solution includes hosting node websites.  To use their deployment tool, go into the azure portal and create a website and turn on the git repository.  The next step is to add the git remote to my local git project and deploy it via 'git push aure master'.  This copies your master branch into the azure git repository and then deploys the code including the required npm modules in your package.json to the azure website you created.
+[Azure][Azure] - Part of Microsoft's Azure solution includes hosting node websites.  To use their deployment tool, go into the azure portal and create a website and turn on the git repository.  The next step is to add the git remote to my local git project and deploy it via 'git push azure master'.  This copies your master branch into the azure git repository and then deploys the code including the required npm modules in your package.json to the azure website you created.
 
 
 ### Windows deployments
@@ -46,7 +46,7 @@ This repository contains the source code for a basic website that shows off [Exp
 
 ### Ubuntu deployments
 
-[Upstart and Monit][Upstart and Monit] - This is how I have all my personal node websites deployed.  Once setup, The only thing needed to deploy code changes is 'stop nodesite', 'git pull' and 'start nodesite'.  Monit can actually monitor the state of the wesbsite and restart the website if it sees that its down.  Use 'Test' as user name and password.
+[Upstart and Monit][Upstart and Monit] - This is how I have all my personal node websites deployed.  Once setup, The only thing needed to deploy code changes is 'stop nodesite', 'git pull' and 'start nodesite'.  Monit can actually monitor the state of the wesbsite and restart the website if it sees that its down.
 
 ### Mongo Tools
 
