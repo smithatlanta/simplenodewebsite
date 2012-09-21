@@ -1,0 +1,17 @@
+.rating
+  tr
+    td
+      label
+        | #{new Date(rating.date).getMonth() + 1}/#{new Date(rating.date).getDate()}/#{new Date(rating.date).getFullYear()}
+    td
+      label
+        | #{rating.restaurant}
+    td
+      label
+        | #{rating.rating}
+    td
+	  label
+        | #{rating.reviewer} 
+    td
+      label
+        | !{rating.notes}

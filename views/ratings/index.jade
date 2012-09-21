@@ -1,0 +1,59 @@
+extends ../layout
+
+append head
+  link(rel='stylesheet', href='/stylesheets/jquery.dataTables.css')
+  link(rel='stylesheet', href='/stylesheets/DT_bootstrap.css')
+  script(src='/javascripts/jquery.dataTables.min.js')
+  script(src='/javascripts/DT_bootstrap.js')
+  script(src='/javascripts/searchrating.js')
+  script(src='/javascripts/bootbox.min.js')
+
+block content
+  div.accordion(id="accordion-head", style="position:relative;top:60px")
+    div.accordion-group
+      div.accordion-heading
+        a.accordion-toggle(data-toggle="collapse", data-parent="accordion-head", href="#accordion-bod", style="display:inline-block")  Search Criteria
+      div.accordion-body(id="accordion-bod", style="height:780px")
+        div.accordion-inner(style="background-color:#F5F5F5;")
+          form.form-horizontal(action='/search', method='get', enctype='multipart/form-data')
+            div.control-group
+              label.control-label(for="restaurant") Restaurant:
+              div.controls
+                input(type='text', id='input-restaurant', name='restaurant', style='width:400px')
+            div.control-group
+              label.control-label(for="reviewer") Reviewer:
+              div.controls
+                input(type='hidden', id='input-hiddenreviewer')
+                select(id='reviewer', name='reviewer')
+            div.control-group
+              label.control-label(for="rating") Rating:
+              div.controls
+                input(id="input-hiddenrating", name="rating", type="hidden")
+                #div-rating.btn-group(data-toggle="buttons-checkbox")
+                  button.btn.btn-primary.btn-small.btn-rating(type="button", value="TV-Y") TV-Y
+                  button.btn.btn-primary.btn-small.btn-rating(type="button", value="TV-Y7") TV-Y7
+                  button.btn.btn-primary.btn-small.btn-rating(type="button", value="TV-G") TV-G
+                  button.btn.btn-primary.btn-small.btn-rating(type="button", value="TV-PG") TV-PG
+                  button.btn.btn-primary.btn-small.btn-rating(type="button", value="TV-14") TV-14
+                  button.btn.btn-primary.btn-small.btn-rating(type="button", value="TV-MA") TV-MA
+            div.control-group
+              label.control-label(for="notes") Notes:
+              div.controls
+                input(id='input-notes', name='notes', style='width:500px')
+            input(name="collapsed", value="true", type="hidden")
+            button.btn.btn-primary.btn-small(id="search", type="submit") Search
+            &nbsp;&nbsp;
+            button.btn.btn-primary.btn-small(id="reset", type="button") Reset
+      div.accordion-group
+        h5(style="margin-left:15px") Search Results
+        table.table.table-striped.table-bordered(id="ratings")
+          thead
+            tr
+              th Date
+              th Restaurant
+              th Rating
+              th Reviewer
+              th Notes
+              th Id
+              th Action
+          tbody

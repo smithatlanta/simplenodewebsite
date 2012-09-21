@@ -1,0 +1,15 @@
+div.navbar.navbar-fixed-top
+  div.navbar-inner
+    div.container
+      ul.nav.pull-left(style="padding-top:8px;")
+        li
+          form.navbar-search.pull-left(action='/search', method='get', enctype='multipart/form-data')
+            input.search-query.span2(id="searchratings", name='restaurant', type="text", placeholder="Search By Restaurant")
+            input(name="collapsed", value="true", type="hidden")
+        li(style="padding-left:5px;")
+          a(href="/search?collapsed=false&isnew=true") Search 
+        li.active.hidden(id="addrating")
+          a(href="/ratings/new") Add Rating
+      ul.nav.pull-right(style="padding-top:8px;")
+        li(id="signinout")
+          a
