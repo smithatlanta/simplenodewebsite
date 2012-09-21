@@ -61,6 +61,9 @@ Twitter Peeps to follow: Node in general - @izs, @substack, @mikeal,  Express / 
 
 Recommended Books: The Node Beginner Book - http://www.nodebeginner.org,  Hands On Node by Pedro Teixera,  Node In Action by Mike Cantelon, TJ Holowaychuk and Nathan Rajlich
 
+[NodeTuts][NodeTuts] - Nice node videos.  A little dated but still useful.
+
+[NPM Search][NPM Search] - Search for npm modules.
 
 ### Gotchas
 
@@ -99,4 +102,5 @@ The package.json file - This file contains all npm module and node engine versio
 [MongoVue]: http://www.mongovue.com/
 
 [NodeUp]: http://nodeup.com
- 
+[NodeTuts]: http://nodetuts.com/
+[NPM Search]: https://npmjs.org/
