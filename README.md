@@ -1,6 +1,6 @@
 # Simple Node Website
 
-This repository contains the source code for a basic website that shows off [Express][Express], [Jade][Jade], [Mongoose][Mongoose] with a [MongoDB][MongoDB] backend on [MongoLab][MongoLab].  It also shows off [Bootstrap][Bootstrap] and [Angular.js][Angular.js] as well. This is a work in process at the moment but it can provide a good basic start for someone just starting out.  Use 'Test' as the user and password.
+This repository contains the source code for a basic website that shows off [Express][Express], [Jade][Jade], [Mongoose][Mongoose] with a [MongoDB][MongoDB] backend on [MongoLab][MongoLab].  It also shows off [Bootstrap][Bootstrap] and [Angular.js][Angular.js] as well. This is a work in process at the moment but it can provide a good basic start for someone just starting out.  Please note that the type of security used should only be done over https.
 
 
 ## Tools that I used to develop this code
