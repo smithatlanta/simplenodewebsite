@@ -1,7 +1,6 @@
 var express = require('express'),
   path = require('path'),
   config = require('./config/config'),
-  flash = require('connect-flash'),
   fs = require('fs');
 
 var app = module.exports = express();
@@ -27,7 +26,6 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser('keyboard cat'));
-  app.use(flash());
   app.use(express.static(__dirname +'/public'));
   app.use(app.router);
 });
