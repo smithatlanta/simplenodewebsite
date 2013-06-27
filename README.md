@@ -101,6 +101,7 @@ The package.json file - This file contains all npm module and node engine versio
 [Upstart and Monit]: http://howtonode.org/deploying-node-upstart-monit
 
 [MongoVue]: http://www.mongovue.com/
+[RoboMongo]: http://www.robomongo.org
 
 [NodeUp]: http://nodeup.com
 [NodeTuts]: http://nodetuts.com/
