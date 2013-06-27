@@ -18,7 +18,7 @@ This repository contains the source code for a basic website that shows off [Exp
 
 ### Debugging / Rapid Development
 
-[Node-Inspector][Node-Inspector] - This is a requirement whenever I build a new machine that I'll be doing Node development on.  I basically start my node app using nodemon --debug app.js, start node-inspector and then browse to http://0.0.0.0:8080/debug?port=5858 and I'm debugging into my Node code.  Combining this with the Chrome development tools and you can really debug code quickly.  It's nice just looking at javascript everywhere.  No context switching between languages(as you would do in every other situation)
+[Node-Inspector][Node-Inspector] - use version 0.1.10(only one that works). This is a requirement whenever I build a new machine that I'll be doing Node development on.  I basically start my node app using nodemon --debug app.js, start node-inspector and then browse to http://0.0.0.0:8080/debug?port=5858 and I'm debugging into my Node code.  Combining this with the Chrome development tools and you can really debug code quickly.  It's nice just looking at javascript everywhere.  No context switching between languages(as you would do in every other situation)
 
 [Nodemon][Nodemon] - This tool basically monitors the directory(and subdirectories) for file changes and re-launches the node server so you aren't constantly going back and forth between the editor and command line(stopping and starting node).  This is also on that list of required items I install on new Node development machines 
 
@@ -50,8 +50,9 @@ This repository contains the source code for a basic website that shows off [Exp
 
 ### Mongo Tools
 
-[MongoVue][MongoVue] - This is the best tool I've used for MongoDB.  It allows you to drop and create collections, databases, and documents as well as run queries and view indexes.  It is a requirement for me for doing MongoDB stuff.
+[MongoVue][MongoVue] - Windows - This is the best tool I've used for MongoDB.  It allows you to drop and create collections, databases, and documents as well as run queries and view indexes.
 
+[RoboMongo][RoboMongo] - Mac - It allows you to drop and create collections, databases, and documents as well as run queries and view indexes.
 
 ### Node references
 
@@ -100,6 +101,7 @@ The package.json file - This file contains all npm module and node engine versio
 [Upstart and Monit]: http://howtonode.org/deploying-node-upstart-monit
 
 [MongoVue]: http://www.mongovue.com/
+[RoboMongo]: http://www.robomongo.org
 
 [NodeUp]: http://nodeup.com
 [NodeTuts]: http://nodetuts.com/
