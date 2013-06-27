@@ -1,6 +1,6 @@
 # Simple Node Website
 
-This repository contains the source code for a basic website that shows off [Express][Express], [Jade][Jade], [Mongoose][Mongoose] with a [MongoDB][MongoDB] backend on [MongoLab][MongoLab].  It also shows off [Bootstrap][Bootstrap], [jQuery][jQuery], and [Datatables][Datatables] as well. This is a work in process at the moment but it can provide a good basic start for someone just starting out.  Use 'Test' as the user and password.
+This repository contains the source code for a basic website that shows off [Express][Express], [Jade][Jade], [Mongoose][Mongoose] with a [MongoDB][MongoDB] backend on [MongoLab][MongoLab].  It also shows off [Bootstrap][Bootstrap] and [Angular.js][Angular.js] as well. This is a work in process at the moment but it can provide a good basic start for someone just starting out.  Use 'Test' as the user and password.
 
 
 ## Tools that I used to develop this code
@@ -78,8 +78,7 @@ The package.json file - This file contains all npm module and node engine versio
 [MongoDB]: http://www.mongodb.org/
 [MongoLab]: http://www.mongolab.com/
 [Bootstrap]: http://twitter.github.com/bootstrap/
-[jQuery]: http://jquery.com/
-[Datatables]: http://datatables.net/
+[Angular.js]: http://angularjs.org/
 
 [SublimeText2]: http://www.sublimetext.com/2
 [TextMate2]: https://github.com/textmate/textmate
