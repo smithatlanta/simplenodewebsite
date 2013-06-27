@@ -2,8 +2,7 @@ var express = require('express'),
   path = require('path'),
   config = require('./config/config'),
   flash = require('connect-flash'),
-  fs = require('fs'),
-  MongoStore = require('connect-mongo')(express);
+  fs = require('fs');
 
 var app = module.exports = express();
 
@@ -28,14 +27,9 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser('keyboard cat'));
-  app.use(express.session({
-    secret:"silverscreen2012",
-    maxAge: new Date(Date.now() + 3600000),
-    store: new MongoStore({host: config.DatabaseConfig.host, port: config.DatabaseConfig.port, db: config.DatabaseConfig.name, collection: "session", username: config.DatabaseConfig.user, password: config.DatabaseConfig.pass, auto_reconnect: true })
-  }));
   app.use(flash());
+  app.use(express.static(__dirname +'/public'));
   app.use(app.router);
-  app.use(express.static(path.join(__dirname, 'public')));
 });
 
 app.listen(process.env.port || config.EnvConfig.port);

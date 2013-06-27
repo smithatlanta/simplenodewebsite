@@ -1,19 +1,20 @@
 extends layout
 
 block content
-  div.row.span12(style="top:100px;position:relative")
-    div.span4
-    div.well.span4
-      form(action='/signin', method='post', style="padding-left:60px")
-        input(type='hidden', name='redir', value=redir)
-        p
-          label(for='login') User ID:
-          input(type='text', name='login', id='login')
-        p
-          label(for='password') Password:
-          input(type='password', name='password', id='password')
-        p
-          button.btn.btn-primary(type='submit') Sign In
-          - if (message)
-            label.login= message
-    div.span4
+  div.row
+    div(ng-view, style="margin:auto;width:70%")
+
+  link(rel='stylesheet', href='/stylesheets/ng-grid.min.css')
+  script(src='/javascripts/angular.min.js')
+  script(src='/javascripts/ui-bootstrap-tpls-0.4.0.min.js')
+  script(src='/javascripts/ng-grid-2.0.6.min.js')
+  script(src='/javascripts/app.js')
+  script(src='/javascripts/services.js')
+  script(src='/javascripts/controllers/common.js')
+  script(src='/javascripts/controllers/addrating.js')
+  script(src='/javascripts/controllers/adduser.js')
+  script(src='/javascripts/controllers/editrating.js')
+  script(src='/javascripts/controllers/index.js')
+  script(src='/javascripts/controllers/searchrating.js')
+  script(src='/javascripts/filters.js')
+  script(src='/javascripts/directives.js')

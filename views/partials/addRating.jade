@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  div.form-horizontal.well(style="position:relative;top:60px")
+    div.control-group
+      label.control-label(for="restaurant") Restaurant:
+      div.controls
+        input(type='text', id='restaurant', name='restaurant', ng-model='restaurant', style='width:400px')
+    div.control-group
+      label.control-label(for="date") Review Date:
+      div.controls
+        datepicker(id='date', ng-model="reviewdate", show-weeks="showWeeks",starting-day="1",min="minDate",max="'2015-06-22'")
+    div.control-group
+      label.control-label(for="reviewer") Reviewer:
+      div.controls
+        select(ng-model="reviewer", ng-options="c.username for c in users")
+    div.control-group
+      label.control-label(for="rating") Rating:
+      div.controls
+        div.btn-group
+          button.btn(ng-repeat="value in radioModelButtons", type="button", ng-model="radio.model", btn-radio="value"){{value}}
+    div.control-group
+      label.control-label(for="notes") Notes:
+      div.controls
+        #div-notes(contenteditable='true', ng-model='notes')
+    p(style="padding-top:20px")
+      button.btn.btn-primary.btn-small(ng-click='submitRating()') Add
+      &nbsp;&nbsp;
+      button.btn.btn-primary.btn-small(ng-click='cancel()') Cancel

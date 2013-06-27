@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  form.row(ng-submit='submitLogin()', ng-controller='IndexCtrl', style="top:100px;position:relative")
+    div.span4
+    div.well.span4
+      div(style="padding-left:60px")
+        p
+          label(for='username') User Name:
+          input(type='text', ng-model='form.username', id='username', autofocus="autofocus")
+        p
+          label(for='password') Password:
+          input(type='password', ng-model='form.password', id='password')
+        p
+          table
+            tr
+              td
+                button.btn.btn-primary(type='submit') Sign In
+              td
+                span {{message}}
+    div.span4

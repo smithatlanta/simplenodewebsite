@@ -1,32 +1,31 @@
 var mongoose = require('mongoose');
+var moment = require('moment');
 
 var Schema = mongoose.Schema, ObjectID = Schema.ObjectId;
 
 var Rating = new Schema({
 	restaurant: String,
-	date: Date,
+	reviewdate: Date,
 	reviewer: String,
 	rating: String,
-	notes: String,
+	notes: String
 });
-
-var Reviewer = new Schema({
-	name: String,
-});
-
 
 mongoose.model('Rating',Rating, 'rating');
-mongoose.model('Reviewer',Reviewer, 'reviewer');
 
 var Rating = mongoose.model('Rating');
-var Reviewer = mongoose.model('Reviewer');
 
 siteProvider = function(){};
 
-siteProvider.prototype.searchRatings = function(qry, pending, callee, callback){
+siteProvider.prototype.searchRatings = function(qry, callback){
 	var query = Rating.find({}).sort({restaurant: 'asc'});
 
 	var hasQueryString = false;
+	if(qry.reviewdate !== "" && qry.reviewdate !== undefined){
+		hasQueryString = true;
+		var dateq = moment(qry.reviewdate).startOf('day').utc();
+		query.where('reviewdate', dateq);
+	}
 	if(qry.restaurant !== "" && qry.restaurant !== undefined){
 		hasQueryString = true;
 		var pattern = new RegExp(qry.restaurant, "i");
@@ -43,18 +42,13 @@ siteProvider.prototype.searchRatings = function(qry, pending, callee, callback){
 		query.regex('rating', pattern);
 	}
 	if(qry.reviewer !== "" && qry.reviewer !== undefined){
-		hasQueryString = true;		
+		hasQueryString = true;
 		query.where('reviewer', qry.reviewer);
 	}
 
 	if(hasQueryString) {
 		query.exec(function(err, ratings){
-			var arrRating = new Array();
-			for(var ctr=0; ctr < ratings.length; ctr++) {
-				var tmpDate = (ratings[ctr].date.getMonth()+1) + "/" + ratings[ctr].date.getDate() + "/" + ratings[ctr].date.getFullYear();
-				arrRating.push([tmpDate, ratings[ctr].restaurant.replace(/(\|)/g, ","), ratings[ctr].rating, ratings[ctr].reviewer, ratings[ctr].notes, ratings[ctr]._id, ""]);
-			}
-			callback(arrRating);
+			callback(ratings);
 		});
 	}
 	else{
@@ -68,11 +62,11 @@ siteProvider.prototype.newRating = function(callback){
 	callback(rating);
 };
 
-siteProvider.prototype.getReviewers = function(callback){
-	Reviewer.find({} , function(err, reviewers){
-        reviewers.sort();
-        callback(reviewers);
-    });
+
+siteProvider.prototype.getRatings = function(callback){
+	Rating.find(function(err, ratings) {
+		callback(ratings);
+	});
 };
 
 siteProvider.prototype.getRating = function(id, callback){
@@ -82,19 +76,25 @@ siteProvider.prototype.getRating = function(id, callback){
 };
 
 siteProvider.prototype.insertRating = function(rating, callback){
-	var ratingToSave = new Rating(rating);
+	var ratingToSave = new Rating();
+	ratingToSave.restaurant = rating.restaurant;
+	ratingToSave.reviewdate = moment(rating.reviewdate).startOf('day').utc();
+	ratingToSave.reviewer = rating.reviewer;
+	ratingToSave.rating = rating.rating;
+	ratingToSave.notes = rating.notes;
+
     ratingToSave.save(function(err) {
         if (err) {
           console.log(err);
           throw err;
         }
     });
-	callback(ratingToSave._id);
+	callback(ratingToSave);
 };
 
-siteProvider.prototype.updateRating = function(id, rating, callback){
-	Rating.findById(id, function(err, doc) {
-		doc.date = rating.date;
+siteProvider.prototype.updateRating = function(rating, callback){
+	Rating.findById(rating.id, function(err, doc) {
+		doc.reviewdate = moment(rating.reviewdate).startOf('day').utc();
 		doc.notes = rating.notes;
 		doc.rating = rating.rating;
 		doc.reviewer = rating.reviewer;
@@ -103,10 +103,10 @@ siteProvider.prototype.updateRating = function(id, rating, callback){
 		doc.save(function(err) {
 			if (err) {
 				console.log(err);
-				throw err;
+				callback("false");
 			}
 		});
-		callback(doc._id);
+		callback("true");
 	});
 };
 
@@ -114,7 +114,7 @@ siteProvider.prototype.deleteRating = function(id, callback){
 	Rating.remove({_id: id}, function(err) {
 		if (err) {
 			console.log(err);
-			throw err;
+			callback("false");
 		}
 	});
 	callback("true");

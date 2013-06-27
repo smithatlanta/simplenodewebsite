@@ -6,14 +6,16 @@
     "start": "node app"
   },
   "engines": {
-    "node": "0.8.2"
+    "node": "0.8.x"
   },
   "dependencies": {
     "express": "latest",
     "jade": "latest",
-    "mongo": "latest",
+    "mongodb": "latest",
     "mongoose": "latest",
     "connect-flash": "latest",
-    "connect-mongo": "latest"
+    "connect-mongo": "latest",
+    "moment": "latest",
+    "bcrypt": "latest"
   }
 }

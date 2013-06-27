@@ -1,84 +1,77 @@
 var siteProvider = require('../models/siteProvider').siteProvider;
 var siteProvider = new siteProvider();
+var moment = require('moment');
 
 exports.index = function(req, res){
-    siteProvider.newRating(function(rating){
-        res.render('ratings/new', { title: 'NodeTestWebsite', rating: rating});
-    });
+  res.render('index');
+};
+
+exports.partials = function (req, res) {
+  var name = req.params.name;
+  res.render('partials/' + name);
 };
 
 exports.searchRatings =  function(req, res){
-    var ratings = new Object();
-    res.render('ratings/index', { title: 'NodeTestWebsite', ratings: ratings, query: req.query });
-};
+    siteProvider.searchRatings(req.body, function(ratings){
+        var out = [];
+        for(var x=0; x< ratings.length;x++)
+        {
+            var rating = {};
+            rating.reviewdate = moment(ratings[x].reviewdate).format('L');
+            rating.notes = ratings[x].notes;
+            rating.rating = ratings[x].rating;
+            rating.restaurant = ratings[x].restaurant;
+            rating.reviewer = ratings[x].reviewer;
+            rating.id = ratings[x]._id;
 
-exports.searchRatingsData =  function(req, res){
-    siteProvider.searchRatings(req.query, false, 'search', function(ratings){
-        res.json(ratings);
+            out.push(rating);
+
+        }
+        res.json(out);
     });
 };
 
-exports.addRating =  function(req, res){
-    siteProvider.newRating(function(rating){
-        res.render('ratings/new', { title: 'NodeTestWebsite', rating: rating});
-    });
-};
-
-exports.editRating =  function(req, res){
+exports.getRating = function(req, res){
     siteProvider.getRating(req.params.id, function(rating){
-        res.render('ratings/edit', { title: 'NodeTestWebsite', rating: rating, id: req.params.id});
+        res.json(rating);
     });
 };
 
-exports.viewRating =  function(req, res){
-    siteProvider.getRating(req.params.id, function(rating){
-        res.render('ratings/view', { title: 'NodeTestWebsite', rating: rating, id: req.params.id});
-    });
-};
+exports.getRatings = function(req, res){
+    siteProvider.getRatings(function(ratings){
+        var out = [];
+        for(var x=0; x< ratings.length;x++)
+        {
+            var rating = {};
+            rating.reviewdate = moment(ratings[x].reviewdate).format('L');
+            rating.notes = ratings[x].notes;
+            rating.rating = ratings[x].rating;
+            rating.restaurant = ratings[x].restaurant;
+            rating.reviewer = ratings[x].reviewer;
+            rating.id = ratings[x]._id;
 
-exports.getReviewers =  function(req, res){
-    if(req.session.reviewers === undefined) {
-        siteProvider.getReviewers(function(reviewers){
-            req.session.reviewers = reviewers;
-            res.json(reviewers);
-        });
-    }
-    else
-    {
-        res.json(req.session.reviewers);
-    }
+            out.push(rating);
+
+        }
+        res.json(out);
+    });
 };
 
 exports.insertRating = function(req, res){
-    siteProvider.insertRating(req.body.rating, function(id){
-        siteProvider.newRating(function(rating){
-            res.render('ratings/new', { title: 'NodeTestWebsite', rating: rating});
-        });
+    siteProvider.insertRating(req.body, function(rating){
+        res.json(rating);
     });
 };
 
 exports.updateRating = function(req, res){
-    siteProvider.updateRating(req.body.id, req.body.rating, function(id){
-        siteProvider.getRating(id, function(rating){
-            res.render('ratings/edit', { title: 'NodeTestWebsite', rating: rating , id: id});
-        });
-    });
-};
-
-exports.approveRating = function(req, res){
-    siteProvider.approveRating(req.params.id, function(id){
-        res.redirect('admin');
+    siteProvider.updateRating(req.body, function(success){
+        res.json(success);
     });
 };
 
 exports.deleteRating = function(req, res){
     siteProvider.deleteRating(req.params.id, function(success){
-       res.redirect('search' + req._parsedUrl.search + "&collapsed=true");
+        res.json(success);
     });
 };
 
-exports.getRating = function(req, res){
-    siteProvider.getRating(id, function(rating){
-        res.send(rating);
-    });
-};
