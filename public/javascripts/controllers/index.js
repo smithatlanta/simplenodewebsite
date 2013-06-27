@@ -1,5 +1,7 @@
 function IndexCtrl($scope, $http, $location) {
   $scope.loggedIn = false;
+  $scope.loggedOut = true;
+
   localStorage.clear();
 
   $scope.submitLogin = function () {

@@ -1,6 +1,10 @@
 function EditRatingCtrl($scope, $http, $location, $routeParams) {
   $scope.loggedIn = true;
+  $scope.loggedOut = false;
+
   $scope.form = {};
+
+  $scope.type = "Save";
 
   $scope.radio = {model :  undefined};
 

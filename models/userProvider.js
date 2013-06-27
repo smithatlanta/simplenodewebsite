@@ -16,7 +16,7 @@ var User = new Schema({
     role: {
         type: String
     },
-    lastlogin: {
+    added: {
         type: Date
     }
 });
@@ -88,7 +88,7 @@ userProvider.prototype.insertUser = function(user, callback){
     userToSave.username = user.username;
     userToSave.password = encryptPassword(user.password);
     userToSave.role = user.role;
-    userToSave.role = new Date();
+    userToSave.added = new Date();
 
     userToSave.save(function(err) {
         if (err) {

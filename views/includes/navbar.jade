@@ -8,6 +8,8 @@ div.navbar.navbar-fixed-top
           form.navbar-search.pull-left(action='/searchRating', method='get', enctype='multipart/form-data', ng-show="loggedIn")
             input.search-query.span2(id="searchratings", name='restaurant', type="text", placeholder="Search By Restaurant")
         li(style="padding-left:5px;")
+          a(ng-show="loggedOut", href="/addUser") Register
+        li(style="padding-left:5px;")
           a(ng-show="loggedIn", href="/searchRating") Search
         li
           a(ng-show="loggedIn", href="/addRating") Add Rating

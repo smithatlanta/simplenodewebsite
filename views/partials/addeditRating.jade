@@ -25,6 +25,6 @@ block content
       div.controls
         #div-notes(contenteditable='true', ng-model='notes')
     p(style="padding-top:20px")
-      button.btn.btn-primary.btn-small(ng-click='submitRating()') Save
+      button.btn.btn-primary.btn-small(ng-click='submitRating()') {{type}}
       &nbsp;&nbsp;
       button.btn.btn-primary.btn-small(ng-click='cancel()') Cancel

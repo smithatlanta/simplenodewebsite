@@ -21,7 +21,6 @@ exports.authenticateSession = function(req,res, callback){
     });
 };
 
-
 exports.getUser = function(req, res){
     userProvider.getUser(req.params.id, function(user){
         res.json(user);
@@ -35,6 +34,7 @@ exports.getUsers = function(req, res){
 };
 
 exports.insertUser = function(req, res){
+    console.log(req.body);
     userProvider.insertUser(req.body, function(user){
         res.json(user);
     });

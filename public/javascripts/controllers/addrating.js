@@ -1,6 +1,10 @@
 function AddRatingCtrl($scope, $http, $location) {
   $scope.loggedIn = true;
+  $scope.loggedOut = false;
+
   $scope.form = {};
+
+  $scope.type = "Add";
 
   $scope.radio = {model :  undefined};
 

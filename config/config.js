@@ -1,9 +1,9 @@
   function setDevelopmentConfig(){
-    DatabaseConfig.port = 31978;
-    DatabaseConfig.host = 'ds031978.mongolab.com';
+	DatabaseConfig.port = 27017;
+    DatabaseConfig.host = 'localhost';
     DatabaseConfig.name = 'ratingstest';
-    DatabaseConfig.user = 'rate';
-    DatabaseConfig.pass = 'rate1234';
+    DatabaseConfig.user = '';
+    DatabaseConfig.pass = '';
 
     EnvConfig.port = 3000;
 }

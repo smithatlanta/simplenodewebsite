@@ -6,15 +6,15 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives1',
         controller: IndexCtrl
       }).
       when('/addUser', {
-        templateUrl: '/partials/addUser',
+        templateUrl: '/partials/addeditUser',
         controller: AddUserCtrl
       }).
       when('/addRating', {
-        templateUrl: '/partials/addRating',
+        templateUrl: '/partials/addeditRating',
         controller: AddRatingCtrl
       }).
       when('/editRating/:id', {
-        templateUrl: '/partials/editRating',
+        templateUrl: '/partials/addeditRating',
         controller: EditRatingCtrl
       }).
       when('/searchRating', {
