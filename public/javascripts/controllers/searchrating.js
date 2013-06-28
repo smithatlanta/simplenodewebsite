@@ -6,6 +6,8 @@ function SearchRatingCtrl($scope, $http, $location, $routeParams) {
 
   $scope.radio = {model :  undefined};
 
+  setupLogin($scope, $http);
+
   getUsers($scope, $http, $location);
 
   $scope.today = function() {
@@ -29,6 +31,18 @@ function SearchRatingCtrl($scope, $http, $location, $routeParams) {
     search($scope, $http, $location);
   }
 
+  $scope.gridOptions = { data : 'myData',
+    showGroupPanel: true,
+    enableCellSelection: false,
+    enableRowSelection: false,
+    columnDefs: [{field: 'reviewdate', displayName: 'Review Date', width: '20%'},
+      {field: 'notes', displayName: 'Notes', width: '31%'},
+      {field: 'rating', displayName: 'Rating', width: '7%'},
+      {field: 'restaurant', displayName: 'Restaurant', width: '20%'},
+      {field: 'reviewer', displayName: 'Reviewer', width: '10%'},
+      {width: '12%', displayName: 'Options', cellTemplate: '<input type="button" name="edit" ng-click=editRow(row.entity.id) value="Edit">&nbsp;<input type="button" ng-click=deleteRow(row.entity.id) name="delete" value="Delete">'}
+  ]};
+
   $scope.editRow = function(id){
     $location.url('editRating/' + id);
   };
@@ -37,9 +51,12 @@ function SearchRatingCtrl($scope, $http, $location, $routeParams) {
     $http.defaults.headers.delete = {'Authorization' : localStorage.username + ":" + localStorage.password + ":" + localStorage.session };
 
     $http.delete('/rating/' + id).
-      success(function(data) {
+      success(function(data, status, headers, config) {
         getRatings($scope, $http, $location);
-      });
+      }).
+      error(function(data, status, headers, config){
+        processError(status, $scope, $http);
+      });      
   };
 
   $scope.reset = function(){
@@ -74,42 +91,19 @@ function search(scope, http, location){
         scope.myData = data;
       }).
       error(function(data, status, headers, config){
-        location.url('/');
+        processError(status, scope, http);
       });
-
-      scope.gridOptions = { data : 'myData',
-      showGroupPanel: true,
-      enableCellSelection: false,
-      enableRowSelection: false,
-      columnDefs: [{field: 'reviewdate', displayName: 'Review Date', width: '20%'},
-              {field: 'notes', displayName: 'Notes', width: '31%'},
-              {field: 'rating', displayName: 'Rating', width: '7%'},
-              {field: 'restaurant', displayName: 'Restaurant', width: '20%'},
-              {field: 'reviewer', displayName: 'Reviewer', width: '10%'},
-              {width: '12%', displayName: 'Options', cellTemplate: '<input type="button" name="edit" ng-click=editRow(row.entity.id) value="Edit">&nbsp;<input type="button" ng-click=deleteRow(row.entity.id) name="delete" value="Delete">'}
-              ]};
-
 }
 
 function getRatings(scope, http, location){
+  http.defaults.headers.get = {'Authorization' : localStorage.username + ":" + localStorage.password + ":" + localStorage.session, 'Content-Type' : 'application/json' };  
+  
   scope.myData = [];
     http.get('/ratings').
       success(function(data, status, headers, config) {
         scope.myData = data;
       }).
       error(function(data, status, headers, config) {
-        location.url('/');
+        processError(status, scope, http);
       });
-
-      scope.gridOptions = { data : 'myData',
-      showGroupPanel: true,
-      enableCellSelection: false,
-      enableRowSelection: false,
-      columnDefs: [{field: 'reviewdate', displayName: 'Review Date', width: '20%'},
-              {field: 'notes', displayName: 'Notes', width: '31%'},
-              {field: 'rating', displayName: 'Rating', width: '7%'},
-              {field: 'restaurant', displayName: 'Restaurant', width: '20%'},
-              {field: 'reviewer', displayName: 'Reviewer', width: '10%'},
-              {width: '12%', displayName: 'Options', cellTemplate: '<input type="button" name="edit" ng-click=editRow(row.entity.id) value="Edit">&nbsp;<input type="button" ng-click=deleteRow(row.entity.id) name="delete" value="Delete">'}
-              ]};
 }

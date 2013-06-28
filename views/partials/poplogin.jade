@@ -1,0 +1,20 @@
+div(modal="shouldBeOpen",close="close()",options="opts")
+  div.modal-header
+    h3 Your session has timed out, please login to extend it.
+    div.modal-body
+    p
+      label(for='username') User Name:
+      input(type='text', ng-model='form.username', id='username', autofocus="autofocus")
+    p
+      label(for='password') Password:
+      input(type='password', ng-model='form.password', id='password')
+  div.modal-footer
+    p
+      table
+        tr
+          td
+            button.btn.btn-primary(type='button', ng-click='submitLogin()') Sign In
+          td
+            button.btn(type='button', ng-click='close()') Cancel
+          td
+            span {{message}}    

@@ -8,11 +8,14 @@ function AddRatingCtrl($scope, $http, $location) {
 
   $scope.radio = {model :  undefined};
 
+  setupLogin($scope, $http);
+
   getUsers($scope, $http, $location);
 
   $scope.today = function() {
     $scope.reviewdate = new Date();
   };
+
   $scope.today();
 
   $scope.radioModelButtons = ["A","B","C","D","F"];
@@ -32,7 +35,7 @@ function AddRatingCtrl($scope, $http, $location) {
         $location.url('/searchRating');
       }).
       error(function(data, status, headers, config){
-        $location.url('/');
+        processError(status, $scope, $http);
       });
   };
 

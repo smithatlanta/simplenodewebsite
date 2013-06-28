@@ -1,6 +1,7 @@
 extends ../layout
 
 block content
+  include poplogin.jade
   form.form-horizontal.well(action='/searchRating', method='get', enctype='multipart/form-data', style="position:relative;top:60px;")
     div.control-group
       label.control-label(for="restaurant") Restaurant:

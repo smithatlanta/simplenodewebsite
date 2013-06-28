@@ -11,7 +11,7 @@ function AddUserCtrl($scope, $http, $location) {
         $location.url('/');
       }).
       error(function(data, status, headers, config){
-        $location.url('/');
+        processError(status, $scope, $http);
       });
   };
 }

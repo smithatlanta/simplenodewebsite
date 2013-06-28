@@ -51,7 +51,8 @@ userProvider.prototype.authenticate = function(username, password, unixoffset, c
             if(compare(password, doc.password)){
                 var user = {};
                 // 1 day session
-                var nowplusone = moment().add('days', 1);
+                //var nowplusone = moment().add('days', 1);
+                var nowplusone = moment().add('seconds', 30);
                 user.username = username;
                 user.password = password;
                 user.session = nowplusone.valueOf();

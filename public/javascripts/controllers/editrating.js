@@ -8,6 +8,8 @@ function EditRatingCtrl($scope, $http, $location, $routeParams) {
 
   $scope.radio = {model :  undefined};
 
+  setupLogin($scope, $http);
+
   $scope.today = function() {
     $scope.reviewdate = new Date();
   };
@@ -34,9 +36,13 @@ function EditRatingCtrl($scope, $http, $location, $routeParams) {
           }
         }).
         error(function(data, status, headers, config) {
-          $location.url('/');
+          processError(status, $scope, $http);
         });
+    }).
+    error(function(data, status, headers, config) {
+      processError(status, $scope, $http);
     });
+
 
   $scope.submitRating = function () {
     $http.defaults.headers.put = {'Authorization' : localStorage.username + ":" + localStorage.password + ":" + localStorage.session, 'Content-Type' : 'application/json' };
@@ -54,7 +60,7 @@ function EditRatingCtrl($scope, $http, $location, $routeParams) {
         $location.url('/searchRating');
       }).
       error(function(data, status, headers, config){
-        $location.url('/');
+        processError(status, $scope, $http);
       });
   };
 

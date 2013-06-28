@@ -1,4 +1,4 @@
-angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives1', 'myApp.directives2', 'ui.bootstrap.tpls', 'ui.bootstrap.buttons', 'ui.bootstrap.datepicker', 'ngGrid']).
+angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives1', 'myApp.directives2', 'ui.bootstrap.tpls', 'ui.bootstrap.buttons', 'ui.bootstrap.datepicker', 'ui.bootstrap.modal', 'ngGrid']).
   config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.
       when('/', {
